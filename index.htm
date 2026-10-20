@@ -1,0 +1,291 @@
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>New-KI – Deine persönliche KI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b1020;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px;
+            border-bottom: 1px solid #29334c;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            background: linear-gradient(135deg, #755cff, #00d4ff);
+            padding: 12px;
+            border-radius: 14px;
+            font-weight: bold;
+        }
+
+        header h1 {
+            font-size: 22px;
+            margin: 0;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            color: #aab6d3;
+            font-size: 13px;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 70px auto;
+            padding: 20px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .welcome h2 {
+            font-size: clamp(30px, 6vw, 48px);
+            margin-bottom: 12px;
+        }
+
+        .welcome span {
+            color: #8c7aff;
+        }
+
+        .welcome p {
+            color: #aab6d3;
+            line-height: 1.7;
+        }
+
+        .chat {
+            background: #131b30;
+            border: 1px solid #29334c;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        #messages {
+            min-height: 180px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .message {
+            padding: 14px 16px;
+            border-radius: 14px;
+            margin-bottom: 14px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .bot {
+            background: #202b45;
+        }
+
+        .user {
+            background: #5141ba;
+            margin-left: 12%;
+        }
+
+        .label {
+            font-size: 12px;
+            color: #b8c2df;
+            margin-bottom: 6px;
+        }
+
+        form { display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        input {
+            min-width: 0;
+            flex: 1;
+            padding: 16px;
+            border: 1px solid #364260;
+            border-radius: 12px;
+            background: #0b1020;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #8c7aff;
+        }
+
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 0 22px;
+            background: linear-gradient(135deg, #755cff, #5141ba);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.88;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .feature {
+            background: #131b30;
+            border: 1px solid #29334c;
+            padding: 16px;
+            border-radius: 14px;
+            text-align: center;
+            color: #dce4ff;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            color: #8491b0;
+            font-size: 12px;
+            padding: 30px 15px;
+        }
+
+        @media (max-width: 550px) {
+            main {
+                margin-top: 35px;
+                padding: 14px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            form {
+                gap: 7px;
+            }
+
+            button {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">N</div>
+
+    <div>
+        <h1>New-KI</h1>
+        <p>Deine persönliche KI</p>
+    </div>
+</header>
+
+<main>
+
+    <section class="welcome">
+        <h2>Hallo! Ich bin <span>New-KI.</span></h2>
+
+        <p>
+            Willkommen bei deiner eigenen KI.<br>
+            Stelle Fragen, entdecke neue Ideen
+            und erfahre mehr über die Welt.
+        </p>
+    </section>
+
+    <section class="chat">
+
+        <div id="messages" aria-live="polite">
+            <div class="message bot">
+                <div class="label">New-KI</div>
+                Hallo! 👋 Ich bin New-KI.
+                Meine Webseite ist bereit.
+                Meine intelligente Chatfunktion wird gerade eingerichtet.
+            </div>
+        </div>
+
+        <form id="chatForm">
+            <input
+                id="question"
+                type="text"
+                placeholder="Schreibe deine Frage ..."
+                autocomplete="off"
+                required
+            >
+
+            <button type="submit">Senden</button>
+        </form>
+
+    </section>
+
+    <section class="features">
+        <div class="feature">💬<br><br>KI-Chat</div>
+        <div class="feature">🌐<br><br>Internetsuche</div>
+        <div class="feature">🎥<br><br>YouTube</div>
+    </section>
+
+</main>
+
+<footer>
+    New-KI · Dein eigenes KI-Projekt
+</footer>
+
+<script>
+    const form = document.getElementById("chatForm");
+    const input = document.getElementById("question");
+    const messages = document.getElementById("messages");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const question = input.value.trim();
+
+        if (!question) return;
+
+        const userMessage = document.createElement("div");
+        userMessage.className = "message user";
+
+        const userLabel = document.createElement("div");
+        userLabel.className = "label";
+        userLabel.textContent = "Du";
+
+        userMessage.appendChild(userLabel);
+        userMessage.appendChild(
+            document.createTextNode(question)
+        );
+                "Deine Frage ist angekommen! " +
+                "Die Verbindung zum KI-Modell wird im nächsten " +
+                "Schritt eingerichtet."
+            )
+        );
+
+        messages.appendChild(botMessage);
+
+        input.value = "";
+        messages.scrollTop = messages.scrollHeight;
+        input.focus();
+    });
+</script>
+
+</body>
+</html>
+```
+ 
+
